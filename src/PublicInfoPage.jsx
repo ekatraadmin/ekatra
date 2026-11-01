@@ -321,9 +321,38 @@ function ResourcesPage() {
   );
 }
 
+const pageDescriptions = {
+  about: "Learn about Ekatra, a digital study space that helps students focus, build consistent study habits and study alongside a community.",
+  contact: "Contact the Ekatra team for help, questions, feedback or support with the online student study platform.",
+  privacy: "Read the Ekatra privacy policy to understand how account, study activity and other information may be processed.",
+  terms: "Read the terms and conditions for using Ekatra's online study tools, study rooms and student community features.",
+  resources: "Explore practical study guides on focus sessions, active recall, spaced repetition and building a weekly study plan.",
+};
+
 export default function PublicInfoPage({ page }) {
   useEffect(() => {
-    document.title = `${pageTitles[page] || "Information"} | Ekatra`;
+    const title = `${pageTitles[page] || "Information"} | Ekatra`;
+    const description = pageDescriptions[page] || "Explore Ekatra, a digital study space for focused learning, study goals and studying together.";
+    const paths = { about: "/about", contact: "/contact", privacy: "/privacy", terms: "/terms", resources: "/resources" };
+    const canonicalUrl = `https://ekatra.online${paths[page] || "/"}`;
+
+    document.title = title;
+
+    let descriptionTag = document.querySelector('meta[name="description"]');
+    if (!descriptionTag) {
+      descriptionTag = document.createElement("meta");
+      descriptionTag.setAttribute("name", "description");
+      document.head.appendChild(descriptionTag);
+    }
+    descriptionTag.setAttribute("content", description);
+
+    let canonicalTag = document.querySelector('link[rel="canonical"]');
+    if (!canonicalTag) {
+      canonicalTag = document.createElement("link");
+      canonicalTag.setAttribute("rel", "canonical");
+      document.head.appendChild(canonicalTag);
+    }
+    canonicalTag.setAttribute("href", canonicalUrl);
   }, [page]);
 
   const content = {

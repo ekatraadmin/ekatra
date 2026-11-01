@@ -1,0 +1,426 @@
+
+/* =========================================================
+   STUDY TOGETHER Ã¢â‚¬â€ STUDY ROOM VIDEO / CHAT FIX
+   Import AFTER your existing Rooms.css / Rooms(1).css
+   ========================================================= */
+
+.study-room-page {
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding: clamp(10px, 1.5vw, 20px);
+  overflow-x: hidden;
+}
+
+.study-room-header,
+.study-room-main {
+  width: 100%;
+  max-width: 1500px;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+.study-room-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+  gap: clamp(12px, 1.4vw, 18px);
+  align-items: start;
+}
+
+.study-room-center,
+.study-room-sidebar {
+  min-width: 0;
+}
+
+/* VIDEO GRID */
+.room-video-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.room-video-grid.has-remote {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.room-video-grid.single-video {
+  grid-template-columns: minmax(0, 1fr);
+  width: min(100%, 900px);
+  margin-inline: auto;
+}
+
+.participant-video-card {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 16 / 9;
+  min-height: 0 !important;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 14px;
+  background: #08090b;
+}
+
+.participant-video-card .camera-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #08090b;
+}
+
+.local-video-card .camera-video { transform: scaleX(-1); }
+.remote-video-card .camera-video { transform: none; }
+
+.participant-video-label {
+  position: absolute;
+  z-index: 5;
+  top: 10px;
+  left: 10px;
+  max-width: calc(100% - 20px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.remote-camera-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 20px;
+  text-align: center;
+  background:
+    radial-gradient(circle at center, rgba(96,110,240,.10), transparent 55%),
+    #0a0c10;
+}
+
+.remote-avatar {
+  width: clamp(52px, 6vw, 72px);
+  height: clamp(52px, 6vw, 72px);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, #5f70ee, #8795ff);
+  font-size: clamp(20px, 2.5vw, 29px);
+  font-weight: 800;
+  box-shadow: 0 12px 30px rgba(83,101,238,.22);
+}
+
+.remote-camera-placeholder strong {
+  max-width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #e8eaf0;
+  font-size: 13px;
+}
+
+.remote-camera-placeholder span {
+  color: #777c88;
+  font-size: 10px;
+}
+
+.video-off-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: #777c88;
+}
+
+/* PEOPLE */
+.members-list {
+  min-width: 0;
+  max-height: min(42vh, 420px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.member-item,
+.member-info {
+  min-width: 0;
+}
+
+.member-info strong,
+.member-info span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* CHAT */
+.room-chat-panel {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+  max-height: min(55vh, 620px);
+}
+
+.room-messages {
+  flex: 1 1 auto;
+  min-height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.chat-message { min-width: 0; max-width: 100%; }
+
+.chat-bubble,
+.chat-image-link {
+  max-width: min(85%, 280px);
+}
+
+.chat-bubble {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.chat-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.chat-input-row {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chat-input-row input:not(.chat-file-input) {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* DESKTOP */
+@media (min-width: 1200px) {
+  .study-room-main {
+    grid-template-columns: minmax(0,1fr) 360px;
+  }
+
+  .room-video-grid.has-remote {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
+/* SMALL LAPTOP */
+@media (max-width: 1050px) {
+  .study-room-main {
+    grid-template-columns: minmax(0,1fr) 310px;
+  }
+
+  .room-video-grid.has-remote {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+  .room-chat-panel {
+    max-height: 50vh;
+  }
+}
+
+/* TABLET */
+@media (max-width: 850px) {
+  .study-room-page { padding: 10px; }
+
+  .study-room-main {
+    grid-template-columns: 1fr;
+  }
+
+  .study-room-sidebar {
+    position: static !important;
+    top: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .room-video-grid.has-remote {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+  .room-chat-panel {
+    max-height: 520px;
+  }
+}
+
+/* PHONE */
+@media (max-width: 620px) {
+  .study-room-page { padding: 8px; }
+
+  .study-room-header { padding: 10px !important; }
+
+  .room-header-right .room-online { display: none; }
+
+  .room-video-grid.has-remote {
+    grid-template-columns: 1fr;
+  }
+
+  .participant-video-card {
+    aspect-ratio: 16 / 9;
+    border-radius: 11px;
+  }
+
+  .room-camera-section { padding: 12px !important; }
+
+  .room-chat-panel {
+    min-height: 360px;
+    max-height: 65vh;
+  }
+
+  .chat-bubble,
+  .chat-image-link {
+    max-width: 88%;
+  }
+
+  .room-video-helper {
+    font-size: 8px;
+    line-height: 1.4;
+  }
+}
+
+/* VERY SMALL PHONE */
+@media (max-width: 400px) {
+  .room-header-left h1 {
+    max-width: 145px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .room-code-row {
+    max-width: 180px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .room-video-grid.has-remote { gap: 8px; }
+
+  .participant-video-label {
+    top: 7px;
+    left: 7px;
+    font-size: 8px;
+  }
+
+  .remote-camera-placeholder strong { font-size: 12px; }
+  .remote-camera-placeholder span { font-size: 9px; }
+
+  .chat-input-row { gap: 4px; }
+}
+
+/* LIGHT THEME */
+.app-theme-light .participant-video-card {
+  background: #eef0f5;
+  border-color: #dfe2e8;
+}
+
+.app-theme-light .remote-camera-placeholder {
+  background:
+    radial-gradient(circle at center, rgba(96,110,240,.08), transparent 55%),
+    #f2f4f8;
+}
+
+.app-theme-light .remote-camera-placeholder strong { color: #252832; }
+.app-theme-light .remote-camera-placeholder span { color: #777d89; }
+.app-theme-light .video-off-dot { background: #8b919c; }
+/* =========================================================
+   ADDED: fits every screen + new status dots
+   ========================================================= */
+
+.room-title-block { min-width: 0; }
+
+.room-title-block h1 {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.member-offline-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #777c88;
+}
+
+/* Header never overflows on narrow screens */
+.study-room-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.room-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1 1 200px;
+}
+
+.room-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+}
+
+/* Camera header row stays readable on phones */
+.section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-heading > div { min-width: 0; }
+
+.room-video-grid.single-video .participant-video-card {
+  aspect-ratio: 16 / 9;
+}
+
+/* Three or more people: keep tiles tidy instead of huge */
+@media (min-width: 900px) {
+  .room-video-grid.has-remote {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .section-heading {
+    grid-template-columns: 1fr;
+  }
+  .section-heading .camera-button {
+    width: 100%;
+    justify-content: center;
+  }
+  .room-header-right .leave-room-button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Respect phone notches / rounded corners */
+@supports (padding: env(safe-area-inset-left)) {
+  .study-room-page {
+    padding-left: max(8px, env(safe-area-inset-left));
+    padding-right: max(8px, env(safe-area-inset-right));
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+}

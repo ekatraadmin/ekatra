@@ -17,7 +17,7 @@ export default function NotificationBar({ userId, enabled = true }) {
     const id = crypto.randomUUID(); setItems((list) => [{ id, ...item }, ...list].slice(0, 4));
     timers.current[id] = setTimeout(() => dismiss(id), 6500);
     if ("Notification" in window && Notification.permission === "granted" && document.visibilityState !== "visible") {
-      try { new Notification(item.title, { body: item.text, icon: "/favicon.ico", tag: item.tag || id }); } catch {}
+      try { new Notification(item.title, { body: item.text, icon: "/ekatra-mark.svg", tag: item.tag || id }); } catch {}
     }
   };
   const nameFor = async (id) => {

@@ -281,11 +281,7 @@ export default function Auth({ initialMode = "login", recovery = false, onRecove
       <div className="auth-shell">
         <section className="auth-visual-panel">
           <div className="auth-brand">
-            <div className="auth-brand-mark">
-              <span />
-              <span />
-              <span />
-            </div>
+            <img className="auth-brand-mark" src="/ekatra-mark.svg" alt="" aria-hidden="true" />
             <span>Ekatra</span>
           </div>
 

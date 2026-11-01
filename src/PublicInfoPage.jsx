@@ -13,7 +13,7 @@ const pageTitles = {
 function SiteBrand() {
   return (
     <a className="info-brand" href="/" aria-label="Ekatra home">
-      <span className="info-brand-mark"><i /><i /><i /></span>
+      <img className="info-brand-mark" src="/ekatra-mark.svg" alt="" aria-hidden="true" />
       <span>Ekatra</span>
     </a>
   );

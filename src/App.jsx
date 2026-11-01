@@ -149,7 +149,7 @@ function App() {
   if (loading) {
     return (
       <div className="loading-screen">
-        <div className="loading-logo">S</div>
+        <img className="loading-logo" src="/ekatra-mark.svg" alt="" aria-hidden="true" />
         <h2>Ekatra</h2>
         <p>Loading your study space...</p>
       </div>
@@ -211,11 +211,7 @@ function PublicHome() {
           className="public-brand"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <span className="public-brand-mark">
-            <span />
-            <span />
-            <span />
-          </span>
+          <img className="public-brand-mark" src="/ekatra-mark.svg" alt="" aria-hidden="true" />
           <span>Ekatra</span>
         </button>
 
@@ -477,11 +473,7 @@ function PublicHome() {
       <footer className="public-footer public-footer-expanded">
         <div className="public-footer-top">
           <div className="public-brand public-footer-brand">
-            <span className="public-brand-mark">
-              <span />
-              <span />
-              <span />
-            </span>
+            <img className="public-brand-mark" src="/ekatra-mark.svg" alt="" aria-hidden="true" />
             <span>Ekatra</span>
           </div>
           <nav className="public-legal-links" aria-label="Information and policies">
@@ -665,7 +657,7 @@ function Login({ initialMode = "login" }) {
 
         {/* LOGO */}
         <div className="auth-logo">
-          <div className="auth-logo-icon">S</div>
+          <img className="auth-logo-icon" src="/ekatra-mark.svg" alt="" aria-hidden="true" />
           <span>Ekatra</span>
         </div>
 
@@ -1021,7 +1013,7 @@ function ProfileSetup({ user, onComplete }) {
       <div className="auth-card">
 
         <div className="auth-logo">
-          <div className="auth-logo-icon">S</div>
+          <img className="auth-logo-icon" src="/ekatra-mark.svg" alt="" aria-hidden="true" />
           <span>Ekatra</span>
         </div>
 
@@ -1286,11 +1278,7 @@ function Sidebar({
       <div className="sidebar-top">
 
         <div className="brand">
-          <div className="brand-icon">
-            <div className="brand-dot brand-dot-1" />
-            <div className="brand-dot brand-dot-2" />
-            <div className="brand-dot brand-dot-3" />
-          </div>
+          <img className="brand-icon" src="/ekatra-mark.svg" alt="" aria-hidden="true" />
 
           <span>Ekatra</span>
         </div>

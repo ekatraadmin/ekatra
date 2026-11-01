@@ -412,9 +412,14 @@ function PublicHome() {
               <p>Connect with friends, share messages and keep your study conversations in one place.</p>
             </article>
             <article className="public-feature-card">
+              <div className="public-feature-icon"><Target size={20} /></div>
+              <h3>Study goals</h3>
+              <p>Set clear study targets, organise what you want to finish and keep your learning on track.</p>
+            </article>
+            <article className="public-feature-card">
               <div className="public-feature-icon"><BarChart3 size={20} /></div>
               <h3>Study statistics</h3>
-              <p>See your study time, streaks, goals and progress so you know how your habits are growing.</p>
+              <p>Review your study time, streaks and activity to understand your progress and build consistent habits.</p>
             </article>
           </div>
         </section>

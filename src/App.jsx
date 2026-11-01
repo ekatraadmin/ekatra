@@ -1214,7 +1214,7 @@ function StudyApp({ profile, user }) {
             STUDY STATS
         ========================= */}
         {page === "stats" && (
-          <StudyStats profile={profile} />
+          <StudyStats profile={profile} setPage={setPage} />
         )}
 
 

@@ -9,6 +9,7 @@ import {
   Play,
   Plus,
   RefreshCw,
+  Sparkles,
   Target,
   Trophy,
   Users,
@@ -253,6 +254,16 @@ export default function Dashboard({ profile, user, setPage }) {
     month: "short",
     day: "numeric",
   });
+  const dailyNudges = [
+    "Start with the smallest task on your list. Momentum can come after.",
+    "A short, focused session still counts as real progress.",
+    "Choose one thing to finish, then give it your full attention.",
+    "Take a breath, clear your desk, and begin where you are.",
+    "You do not need a perfect plan to make a useful start.",
+    "Small study sessions add up. Pick a topic and ease into it.",
+    "Make today a little easier for tomorrow-you.",
+  ];
+  const dailyNudge = dailyNudges[Math.floor(Date.now() / DAY) % dailyNudges.length];
 
   if (loading) {
     return (
@@ -267,13 +278,23 @@ export default function Dashboard({ profile, user, setPage }) {
 
   return (
     <div className="dashboard-page">
-      <header className="dashboard-header">
-        <div>
+      <header className="dashboard-header dashboard-hero">
+        <div className="dashboard-hero-copy">
           <span className="dashboard-eyebrow">YOUR STUDY SPACE</span>
           <h1>
             Hello, <span>{profile?.display_name || "Student"}!</span>
           </h1>
           <p>Consistency today creates a better tomorrow.</p>
+          <div className="dashboard-daily-nudge">
+            <span className="dashboard-nudge-icon"><Sparkles size={16} /></span>
+            <div>
+              <span className="dashboard-nudge-label">A LITTLE NOTE FOR TODAY</span>
+              <strong>{dailyNudge}</strong>
+            </div>
+            <button onClick={() => setPage("solo")}>
+              Start a session <ArrowRight size={15} />
+            </button>
+          </div>
         </div>
 
         <div className="dashboard-header-actions">
@@ -281,7 +302,7 @@ export default function Dashboard({ profile, user, setPage }) {
             <CalendarDays size={18} />
             <div>
               <strong>{todayDate}</strong>
-              <span>Keep going!</span>
+              <span>One step at a time</span>
             </div>
           </div>
 

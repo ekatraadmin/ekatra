@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   BarChart3,
+  ArrowRight,
   CalendarDays,
   CheckCircle2,
   Clock3,
   Flame,
   RefreshCw,
+  Sparkles,
   Target,
   TrendingUp,
   Users,
@@ -84,7 +86,7 @@ function StatCard({ icon, label, value, detail, className = "" }) {
   );
 }
 
-export default function StudyStats({ profile }) {
+export default function StudyStats({ profile, setPage }) {
   const [sessions, setSessions] = useState([]);
   const [goals, setGoals] = useState([]);
   const [rooms, setRooms] = useState([]);
@@ -353,6 +355,13 @@ export default function StudyStats({ profile }) {
     ? Math.round((computed.soloSeconds / computed.totalSeconds) * 100)
     : 0;
   const roomPercent = computed.totalSeconds ? 100 - soloPercent : 0;
+  const progressNote = computed.todaySeconds > 0
+    ? `You've already made ${formatDuration(computed.todaySeconds)} for yourself today. That time counts.`
+    : computed.weekSeconds > 0
+      ? `You have ${formatDuration(computed.weekSeconds)} in the last 7 days. Keep building at your own pace.`
+      : computed.sessionCount > 0
+        ? "A fresh day is a chance to begin again with one manageable session."
+        : "Your first session will be the start of your progress story.";
 
   if (loading) {
     return (
@@ -365,11 +374,21 @@ export default function StudyStats({ profile }) {
 
   return (
     <div className="study-stats-page">
-      <header className="stats-header">
-        <div>
+      <header className="stats-header stats-hero">
+        <div className="stats-hero-copy">
           <span className="stats-eyebrow">YOUR PROGRESS</span>
           <h1>Study Stats</h1>
           <p>See how consistently you are studying and where your time goes.</p>
+          <div className="stats-daily-note">
+            <span className="stats-note-icon"><Sparkles size={16} /></span>
+            <div>
+              <span className="stats-note-label">A GENTLE CHECK-IN</span>
+              <strong>{progressNote}</strong>
+            </div>
+            <button onClick={() => setPage?.("solo")}>
+              Start a session <ArrowRight size={15} />
+            </button>
+          </div>
         </div>
 
         <div className="stats-header-actions">
@@ -441,6 +460,7 @@ export default function StudyStats({ profile }) {
                   key={value}
                   className={range === value ? "active" : ""}
                   onClick={() => setRange(value)}
+                  aria-pressed={range === value}
                 >
                   {label}
                 </button>

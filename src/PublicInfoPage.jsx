@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, Clock3, Mail, Target, Brain, CalendarDays } from "lucide-react";
 import "./PublicInfoPage.css";
 
@@ -103,13 +103,8 @@ function ContactPage() {
         <div>
           <h2>Email support</h2>
           <p>
-            Contact us at the support email published by the Ekatra
-            website operator.
-          </p>
-          <p className="info-placeholder-note">
-            Site owner: replace <code>REPLACE_WITH_YOUR_SUPPORT_EMAIL</code> in
-            <code> PublicInfoPage.jsx</code> with an email address that you check,
-            then publish that address here before submitting the site for review.
+            For questions, feedback or support, email us at{" "}
+            <a href="mailto:ekatrasupport@gmail.com">ekatrasupport@gmail.com</a>.
           </p>
           <a className="info-text-link" href="/">Return to Ekatra <ArrowRight size={15} /></a>
         </div>
@@ -173,12 +168,21 @@ function PrivacyPage() {
       <section className="info-section">
         <h2>5. Cookies, advertising and similar technologies</h2>
         <p>
-          The website may use essential browser storage or similar technologies
-          for sign-in, preferences and core functionality. If advertising is
-          enabled, Google and other advertising partners may use cookies or
-          similar technologies to serve, measure and personalise ads, subject
-          to applicable settings and consent requirements. You can manage
-          cookies through your browser settings.
+          Ekatra uses essential browser storage for sign-in and core
+          functionality. When Google ads are displayed, Google and other
+          third-party vendors may use cookies to serve ads based on your prior
+          visits to this site or other websites. Google's use of advertising
+          cookies enables Google and its partners to serve ads based on those
+          visits. You can opt out of personalised advertising in{" "}
+          <a href="https://adssettings.google.com/" target="_blank" rel="noreferrer">
+            Google Ads Settings
+          </a>{" "}
+          or learn about additional opt-out choices at{" "}
+          <a href="https://www.aboutads.info/" target="_blank" rel="noreferrer">
+            aboutads.info
+          </a>
+          . You can also manage cookies in your browser. Where required, Ekatra
+          will use a consent mechanism before serving personalised ads.
         </p>
       </section>
       <section className="info-section">
@@ -318,6 +322,10 @@ function ResourcesPage() {
 }
 
 export default function PublicInfoPage({ page }) {
+  useEffect(() => {
+    document.title = `${pageTitles[page] || "Information"} | Ekatra`;
+  }, [page]);
+
   const content = {
     about: <AboutPage />,
     contact: <ContactPage />,
